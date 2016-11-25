@@ -68,10 +68,16 @@ class Post extends CI_Model
 	   			'date' => date("d/m/y H:i"),
 	   			'votes' => '0',
 	   			'comments' => '0',
-	   			'status' => 'new',
+	   			//'status' => 'new',
+				'status' => 'considered',
 	   			'categoryid' => $category_id,
 			);
         $this->db->insert('ideas', $data);
+	    
+	//Add these two lines
+        $category = $this->get_row_by_id('categories', $category_id);
+        $this->update_by_id('categories', 'ideas', $category->ideas + 1, $category->id);
+	    
       	$this->log($this->lang->language['log_new_idea'] . ": $title", "user", $author_id);
         return true;
     }
