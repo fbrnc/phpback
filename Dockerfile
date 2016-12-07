@@ -13,3 +13,4 @@ CMD service apache2 start && service mysql start && tail -F /var/log/apache2/acc
 
 # docker build -t fbrnc/phpback:v8 .
 # docker run -it -v (pwd)/:/var/www/html -p 80:80 fbrnc/phpback:v8
+# docker run --name phpback -d -v (pwd)/:/var/www/html -p 80:80 fbrnc/phpback:v8
